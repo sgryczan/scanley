@@ -18,9 +18,9 @@ service/scanley created
 ingress.extensions/scanley created
 ```
 
-2. Open a browser and navigate to 127.0.0.1.nip.io
+2. Open a browser and navigate to http://127.0.0.1.nip.io
 
-*note: If you don't have an ingress controller, you can also tunnel to the application by running the following command: `kubectl port-forward svc/scanley 8080:8080` , and navigate to http://localhost:8080*
+*note: If you don't have an ingress controller, you can also tunnel to the application by running the following command: `kubectl port-forward svc/scanley 8080:80` , and navigate to http://localhost:8080*
 
 
 ## Run in Docker
