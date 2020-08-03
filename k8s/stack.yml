@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scanley
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scanley
+  template:
+    metadata:
+      labels:
+        app: scanley
+    spec:
+      containers:
+      - name: scanley
+        image: sgryczan/scanley:0.0.1
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: scanley
+spec:
+  type: ClusterIP
+  selector:
+    app: scanley
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+    
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: scanley
+spec:
+  rules:
+  - host: 127.0.0.1.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: scanley
+          servicePort: 80
